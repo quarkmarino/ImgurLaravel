@@ -92,6 +92,9 @@ class Imgur {
         if (preg_match('/^get([A-Z][a-z]+)Api$/', $method, $result)) {
             return $this->getApi($result[1]);
         }
+        else{
+            return call_user_func_array([$this->client, $method], $args);
+        }
 
         throw new \Exception("Nonexistent method `{$method}` called.");
     }
